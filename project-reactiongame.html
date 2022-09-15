@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>reaction tester</title>
+        <style type="text/css">
+            #shape{
+                
+                width: 100px;
+                height: 100px;
+                position: relative;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>test your reaction</h2>
+        <p id="p">your time: <span id="timetaken"></span></p>
+        <div id="shape"></div>
+        <script type="text/javascript">
+            var start = new Date().getTime();
+            function randomColor(){
+                var allowed = "ABCDEF0123456789", S = "#";
+
+                while(S.length < 7){
+                    S += allowed.charAt(Math.floor((Math.random()*16)+1));
+                }
+                return S;
+            }
+            function shape(){
+                document.getElementById("shape").style.backgroundColor = randomColor();
+                document.getElementById("shape").style.display = "block";
+                start = new Date().getTime();
+                var x = Math.floor((Math.random() *400) +1);
+                var y = Math.floor((Math.random() *1000) +1);
+                document.getElementById("shape").style.top = x + "px";
+                document.getElementById("shape").style.left = y + "px";
+
+            } 
+            document.getElementById("shape").onclick = function(){
+                document.getElementById("shape").style.display = "none";
+                var end = new Date().getTime();
+                var time = end - start;
+                document.getElementById("timetaken").innerHTML = time/1000 +"s";
+                setTimeout(shape, Math.floor() * 2000);
+            }
+        </script>
+    </body>
+</html>
